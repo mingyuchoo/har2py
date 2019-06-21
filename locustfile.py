@@ -2,7 +2,6 @@ from locust import HttpLocust, TaskSequence, seq_task
 from haralyzerfile import get_info_from_har
 
 
-
 class TaskSet(TaskSequence):
 
     context = None
@@ -23,16 +22,21 @@ class TaskSet(TaskSequence):
 
     @seq_task(1)
     def request(self):
-        if self.context['method'] == 'GET':
-            self.client.get(self.context['url'])
-        elif self.context['method'] == 'POST':
-            self.client.post(self.context['url'])
-        elif self.context['method'] == 'PUT':
-            self.client.put(self.context['url'])
-        elif self.context['method'] == 'DELETE':
-            self.client.delete(self.context['url'])
+        method = self.context['method']
+        url = self.context['url']
+        headers = self.context['headers']
+
+        if method == 'GET':
+            self.client.get(url, headers=headers, name=url)
+        elif method == 'POST':
+            self.client.post(url, 'data', headers={}, name=None)
+        elif method == 'PUT':
+            self.client.put(url, 'data', json={})
+        elif method == 'DELETE':
+            self.client.delete(url, 'data', json={})
         else:
             pass
+
 
 class WebsiteUser(HttpLocust):
     """
