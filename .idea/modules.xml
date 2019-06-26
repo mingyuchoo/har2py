@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/har2py.iml" filepath="$PROJECT_DIR$/.idea/har2py.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/locust-with-haralyzer.iml" filepath="$PROJECT_DIR$/.idea/locust-with-haralyzer.iml" />
     </modules>
   </component>
 </project>
